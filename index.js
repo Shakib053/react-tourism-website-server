@@ -20,7 +20,6 @@ async function run() {
         // const database = client.db("sample_mflix");
         // const movies = database.collection("movies");
         // // Query for a movie that has the title 'The Room'
-        // const query = { title: "The Room" };
 
         // const movie = await movies.findOne(query, options);
         // // since this method returns the matched document, not a cursor, print it directly
