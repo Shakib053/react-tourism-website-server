@@ -84,6 +84,21 @@ async function run() {
 
         })
 
+        app.put('/orders/:_id', async (req, res) => {
+            const id = req.params._id;
+            const updatedUser = req.body;
+            const filter = { _id: ObjectId(id) };
+            const updateDoc = {
+                $set: {
+                    status: 'Approved',
+
+                },
+            };
+            const result = await orderCollection.updateOne(filter, updateDoc)
+            console.log('updating', id)
+            res.json(result)
+        })
+
     } finally {
         //   await client.close();
     }
