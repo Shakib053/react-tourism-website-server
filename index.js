@@ -36,6 +36,14 @@ async function run() {
             res.send(destinations);
         })
 
+        // GET API
+        app.get('/orders', async (req, res) => {
+            console.log('service is hit', req.body);
+            const cursor = orderCollection.find({});
+            const orders = await cursor.toArray();
+            res.send(orders);
+        })
+
 
 
         // GET API
