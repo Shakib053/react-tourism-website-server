@@ -25,6 +25,9 @@ async function run() {
 
         const database = client.db('travelBooking');
         const destinationsCollection = database.collection('destinations');
+        const orderCollection = database.collection('orders');
+
+
         // GET API
         app.get('/destinations', async (req, res) => {
             console.log('service is hit', req.body);
@@ -32,6 +35,9 @@ async function run() {
             const destinations = await cursor.toArray();
             res.send(destinations);
         })
+
+
+
         // GET API
         app.get('/destinations/:id', async (req, res) => {
             const id = req.params.id;
@@ -39,6 +45,7 @@ async function run() {
 
             res.json('hit koreche');
         })
+
 
         // POST API
         app.post('/destinations', async (req, res) => {
@@ -48,6 +55,15 @@ async function run() {
             console.log('added user', result);
             res.json(result);
         });
+
+
+        // Add Orders API
+        app.post('/takeOrders', async (req, res) => {
+            const order = req.body;
+            const result = await orderCollection.insertOne(order);
+            res.json(result);
+        })
+
         // // Query for a movie that has the title 'The Room'
 
         // const movie = await movies.findOne(query, options);
