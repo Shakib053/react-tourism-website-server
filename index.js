@@ -63,14 +63,9 @@ async function run() {
             const order = req.body;
             console.log(order);
             const result = await orderCollection.insertOne(order);
-            res.json(result);
+            res.send(result);
         })
 
-        // // Query for a movie that has the title 'The Room'
-
-        // const movie = await movies.findOne(query, options);
-        // // since this method returns the matched document, not a cursor, print it directly
-        // console.log(movie);
     } finally {
         //   await client.close();
     }
