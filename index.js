@@ -54,7 +54,14 @@ async function run() {
             const destination = await destinationsCollection.findOne(query);
             res.json(destination);
         })
+        //DELETE API
 
+        app.delete('/destinations/:_id', async (req, res) => {
+            const id = req.params._id;
+            const query = { _id: ObjectId(id) };
+            const result = await destinationsCollection.deleteOne(query);
+            res.json(result);
+        })
 
         // POST API
         app.post('/destinations', async (req, res) => {
