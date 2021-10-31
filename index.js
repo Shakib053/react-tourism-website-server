@@ -42,8 +42,9 @@ async function run() {
         app.get('/destinations/:id', async (req, res) => {
             const id = req.params.id;
             console.log('getting specific id no ', id);
-
-            res.json('hit koreche');
+            const query = { _id: ObjectId(id) };
+            const destination = await destinationsCollection.findOne(query);
+            res.json(destination);
         })
 
 
@@ -58,7 +59,7 @@ async function run() {
 
 
         // Add Orders API
-        app.post('/takeOrders', async (req, res) => {
+        app.post('/orders', async (req, res) => {
             const order = req.body;
             const result = await orderCollection.insertOne(order);
             res.json(result);
