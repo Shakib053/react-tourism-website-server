@@ -39,6 +39,15 @@ async function run() {
 
             res.json('hit koreche');
         })
+
+        // POST API
+        app.post('/destinations', async (req, res) => {
+            const newUser = req.body;
+            const result = await destinationsCollection.insertOne(newUser);
+            console.log('got new user', req.body);
+            console.log('added user', result);
+            res.json(result);
+        });
         // // Query for a movie that has the title 'The Room'
 
         // const movie = await movies.findOne(query, options);
