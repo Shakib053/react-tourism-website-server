@@ -39,8 +39,8 @@ async function run() {
 
 
         // GET API
-        app.get('/destinations/:id', async (req, res) => {
-            const id = req.params.id;
+        app.get('/destinations/:_id', async (req, res) => {
+            const id = req.params._id;
             console.log('getting specific id no ', id);
             const query = { _id: ObjectId(id) };
             const destination = await destinationsCollection.findOne(query);
@@ -63,7 +63,7 @@ async function run() {
             const order = req.body;
             console.log(order);
             const result = await orderCollection.insertOne(order);
-            res.send(result);
+            res.json(result);
         })
 
     } finally {
